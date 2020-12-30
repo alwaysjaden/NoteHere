@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-const PORT = 7000;
+const PORT = 8000;
 const app = express();
 
 // Sets up the Express app to handle data parsing
@@ -13,11 +13,20 @@ app.use(express.json());
 
 var notes = []
 // Routes
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
+  
+  app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'notes.html'));
+  });
+
+  
 // =============================================================
 
 //get exiting data
 app.get('/api/notes', (req, res) => {
-    fs.readFile('db/db.json', 'utf8', function(err, contents) {
+    fs.readFile('/db/db.json', 'utf8', function(err, contents) {
       var words = JSON.parse(contents);
       res.send(words);
     });
@@ -25,18 +34,14 @@ app.get('/api/notes', (req, res) => {
 
 
   // Create New notes - takes in JSON input
-  app.post("/api/notes", function(req, res) {
+  app.post("/api/notes", (req, res) => {
     // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body parsing middleware
-    var newNote = req.body;
+    fs.writeFile('/db/db.json', JSON.stringify(json, null, 2), (err) => {
+        // Check for error
+        if (err) throw err;
+        res.send('200');
+      });
   
-    newNote.routeName = newNote.name.replace(/\s+/g, "").toLowerCase();
-  
-    console.log(newNote);
-  
-    characters.push(newNote);
-  
-    res.json(newNote);
   });
   
   // Starts the server to begin listening
