@@ -15,35 +15,15 @@ var notes = []
 // Routes
 // =============================================================
 
-// Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+//get exiting data
+app.get('/api/notes', (req, res) => {
+    fs.readFile('db/db.json', 'utf8', function(err, contents) {
+      var words = JSON.parse(contents);
+      res.send(words);
+    });
   });
-  
-  app.get("/add", function(req, res) {
-    res.sendFile(path.join(__dirname, "notes.html"));
-  });
-  
-  // Displays all notes
-  app.get("/api/notes", function(req, res) {
-    return res.json(notes);
-  });
-  
-  // Displays a single note, or returns false
-  app.get("/api/notes/:id", function(req, res) {
-    var chosen = req.params.note;
-  
-    console.log(chosen);
-  
-    for (var i = 0; i < notes.length; i++) {
-      if (chosen === note[i].routeName) {
-        return res.json(note[i]);
-      }
-    }
-  
-    return res.json(false);
-  });
-  
+
+
   // Create New notes - takes in JSON input
   app.post("/api/notes", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
