@@ -4,12 +4,14 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-const PORT = precess.env.PORT || 8000;
+const PORT = /*precess.env.PORT || */8400;
 const app = express();
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+  // Set static folder 
+app.use(express.static(path.join(__dirname, 'public')));
 
 var notes = []
 // Routes
@@ -63,3 +65,7 @@ app.get('/api/notes', (req, res) => {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
+
+
+
+
