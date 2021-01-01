@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-const PORT = $PORT || 8000;
+const PORT = precess.env.PORT || 8000;
 const app = express();
 
 // Sets up the Express app to handle data parsing
