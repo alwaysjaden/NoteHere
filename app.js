@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-const PORT = 8000;
+const PORT = $PORT || 8000;
 const app = express();
 
 // Sets up the Express app to handle data parsing
@@ -25,8 +25,9 @@ app.get('/', (req, res) => {
 // =============================================================
 
 //get exiting data
+
 app.get('/api/notes', (req, res) => {
-    fs.readFile('/db/db.json', 'utf8', function(err, contents) {
+    fs.readFile('db/db.json', 'utf8', function(err, contents) {
       var words = JSON.parse(contents);
       res.send(words);
     });
@@ -34,13 +35,26 @@ app.get('/api/notes', (req, res) => {
 
 
   // Create New notes - takes in JSON input
-  app.post("/api/notes", (req, res) => {
-    // req.body hosts is equal to the JSON post sent from the user
-    fs.writeFile('/db/db.json', JSON.stringify(json, null, 2), (err) => {
+  app.post('/api/notes', (req, res) => {
+    fs.readFile('db/db.json',(err, data) => {
+      // Check for error
+      if (err) throw err;
+      // Handle data gathering for json update
+      let json = JSON.parse(data);
+      let note = {
+        title: req.body.title,
+        text: req.body.text,
+      }
+      // Add data to existing json array
+      json.push(note);
+  
+      // Write updated json to array 
+      fs.writeFile('db/db.json', JSON.stringify(json, null, 2), (err) => {
         // Check for error
         if (err) throw err;
         res.send('200');
       });
+    });
   
   });
   
