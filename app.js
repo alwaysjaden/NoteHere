@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-const PORT = /*precess.env.PORT || */8400;
+const PORT = precess.env.PORT || 8400;
 const app = express();
 
 // Sets up the Express app to handle data parsing
@@ -46,9 +46,8 @@ app.get('/api/notes', (req, res) => {
       if (err) throw err;
       // Handle data gathering for json update
       let json = JSON.parse(data);
-      let id = Math.floor(Math.random() * 2000000 )
+      let id = Math.floor(Math.random() * 99999999999999999 ) 
         
-
       let note = {
         title: req.body.title,
         text: req.body.text,
