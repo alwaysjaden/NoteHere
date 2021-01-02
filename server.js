@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.listen(PORT);
+// app.listen(PORT);
 
   // Set static folder 
 // app.use('/', express.static(path.join(__dirname, 'public')));
