@@ -4,8 +4,9 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-app.set( 'port', ( process.env.PORT || 5000 ));
+
 const app = express();
+app.set( 'port', ( process.env.PORT || 5000 ));
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
