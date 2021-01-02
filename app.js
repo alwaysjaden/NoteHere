@@ -11,10 +11,9 @@ const PORT = precess.env.PORT || 8400;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
   // Set static folder 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 let database = require('./db/db.json')
-console.log(database)
 
 // Routes
 app.get('/', (req, res) => {
