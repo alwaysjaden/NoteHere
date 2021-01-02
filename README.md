@@ -1,7 +1,7 @@
 # NoteHere "Note Taker"
 
 ![NoteHere](./public/assets/image/snapshot.gif?raw=true "NoteHere")
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://secret-refuge-34143.herokuapp.com/)
+
 
 
 # About This Project
@@ -39,7 +39,7 @@ Using Javascript, and Thrid-Party APIs, and local/hosted server to develop and d
 # Contact
     Jaden Lee : alwaysjaden@gmail.com
     Project Link: https://github.com/alwaysjaden/NoteHere
-    Published Heroku Page : https://secret-refuge-34143.herokuapp.com/
+    Published Heroku Page : https://secret-refuge-34143.herokuapp.com/ [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://secret-refuge-34143.herokuapp.com/)
 
 
 
