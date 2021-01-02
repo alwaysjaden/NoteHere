@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-const PORT = precess.env.PORT || 8400;
+const PORT = /*precess.env.PORT || */8400;
 const app = express();
 
 // Sets up the Express app to handle data parsing
@@ -14,8 +14,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 let database = require('./db/db.json')
-let dbLenght = database.length
-console.log(database.length)
+console.log(database)
 
 // Routes
 app.get('/', (req, res) => {
@@ -70,7 +69,23 @@ app.get('/api/notes', (req, res) => {
 
   //  Delete Selected Notes -
 
-app.delete('/api/notes')
+app.delete('/api/notes/:id', (req, res) => {
+
+    fs.readFile('db/db.json',(err, data) => {
+        // Check for error
+        if (err) throw err;
+        let deleteId = req.params.id;
+        console.log(deleteId)
+        // Handle data gathering for json update
+        let database = JSON.parse(data);
+        console.log(database)
+        
+
+   
+
+})});
+
+
   
   // Starts the server to begin listening
   // =============================================================
