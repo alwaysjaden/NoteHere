@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-const PORT = precess.env.PORT || 8400;
+const PORT = /*precess.env.PORT || */8400;
 const app = express();
 
 // Sets up the Express app to handle data parsing
@@ -13,7 +13,10 @@ app.use(express.json());
   // Set static folder 
 app.use(express.static(path.join(__dirname, 'public')));
 
-var notes = []
+let database = require('./db/db.json')
+let dbLenght = database.length
+console.log(database.length)
+
 // Routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -43,9 +46,14 @@ app.get('/api/notes', (req, res) => {
       if (err) throw err;
       // Handle data gathering for json update
       let json = JSON.parse(data);
+      let id = Math.floor(Math.random() * 2000000 )
+        
+
       let note = {
         title: req.body.title,
         text: req.body.text,
+        id: id
+
       }
       // Add data to existing json array
       json.push(note);
@@ -59,6 +67,11 @@ app.get('/api/notes', (req, res) => {
     });
   
   });
+
+
+  //  Delete Selected Notes -
+
+app.delete('/api/notes')
   
   // Starts the server to begin listening
   // =============================================================
