@@ -75,13 +75,25 @@ app.delete('/api/notes/:id', (req, res) => {
         // Check for error
         if (err) throw err;
         let deleteId = req.params.id;
-        console.log(deleteId)
-        // Handle data gathering for json update
         let database = JSON.parse(data);
-        console.log(database)
-        
 
-   
+
+        for (var i = 0; i < database.length; i++) {
+            var x = deleteId
+            if (database[i].id == x) {
+                database.splice(i, 1)
+            }
+        }
+
+        // console.log(deleteId)
+        console.log(database)
+  
+    fs.writeFile('db/db.json', JSON.stringify(database, null, 2), (err) => {
+        // Check for error
+        if (err) throw err;
+        res.send('200');
+    });
+
 
 })});
 
