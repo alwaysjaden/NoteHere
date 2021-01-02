@@ -6,7 +6,7 @@ const fs = require('fs');
 //express app set-up
 
 const app = express();
-const PORT = precess.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT);
 
   // Set static folder 
