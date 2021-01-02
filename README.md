@@ -1,6 +1,6 @@
 # NoteHere "Note Taker"
 
-![NoteHere](./public/assets/image/snapshot.gif?raw=true "NoteHere)
+![NoteHere](./public/assets/image/snapshot.gif?raw=true "NoteHere")
 
 
 # About This Project
