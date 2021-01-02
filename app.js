@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 //express app set-up
-const PORT = /*precess.env.PORT || */8400;
+const PORT = precess.env.PORT || 8400;
 const app = express();
 
 // Sets up the Express app to handle data parsing
@@ -76,7 +76,6 @@ app.delete('/api/notes/:id', (req, res) => {
         if (err) throw err;
         let deleteId = req.params.id;
         let database = JSON.parse(data);
-
 
         for (var i = 0; i < database.length; i++) {
             var x = deleteId
