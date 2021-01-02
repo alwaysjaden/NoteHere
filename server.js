@@ -7,10 +7,8 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-// app.listen(PORT);
 
   // Set static folder 
-// app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
 // Sets up the Express app to handle data parsing
@@ -81,6 +79,7 @@ app.delete('/api/notes/:id', (req, res) => {
         let deleteId = req.params.id;
         let database = JSON.parse(data);
 
+        //Go Through database and splice any array with ID that matches selected item's ID
         for (var i = 0; i < database.length; i++) {
             var x = deleteId
             if (database[i].id == x) {
@@ -88,8 +87,7 @@ app.delete('/api/notes/:id', (req, res) => {
             }
         }
 
-        // console.log(deleteId)
-        console.log(database)
+       //update to database
   
     fs.writeFile('db/db.json', JSON.stringify(database, null, 2), (err) => {
         // Check for error
