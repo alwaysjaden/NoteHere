@@ -6,8 +6,7 @@ const fs = require('fs');
 //express app set-up
 
 const app = express();
-app.set( 'port', ( process.env.PORT || 5000 ));
-
+const PORT = precess.env.PORT || 8400;
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
