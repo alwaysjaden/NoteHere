@@ -9,7 +9,8 @@ const app = express();
 const PORT = precess.env.PORT || 3000;
 
   // Set static folder 
-app.use(express.static('public'));
+app.use('/', express.static('public'));
+// app.use(express.static('public'));
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
